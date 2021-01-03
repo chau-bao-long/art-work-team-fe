@@ -1,8 +1,41 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import deviantArtLogo from './images/deviant-art.svg';
 import deviantArtText from './images/deviant-art-text.svg';
 
+axios.defaults.baseURL = 'http://localhost:3000';
+
+async function getUsers() {
+  const response = await axios.get('/api/user');
+  return response.data;
+}
+
 function App() {
+  const [users, setUsers] = useState([]);
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+
+  useEffect(async () => {
+    const users = await getUsers();
+    setUsers(users);
+  }, []);
+
+  const handleNameChanged = (value) => {
+    setName(value.target.value);
+  };
+
+  const handleAgeChanged = (value) => {
+    setAge(value.target.value);
+  };
+
+  const handleClickButton = async () => {
+    await axios.post('/api/user', {
+      name: name,
+      age: age,
+    });
+  };
+
   return (
     <div className="container">
       <div className="modal">
@@ -28,6 +61,28 @@ function App() {
         </div>
         <div className="login-form">
           Log In
+        {
+          users.map((user) => {
+            return (
+              <div>
+                <p className="user">{user.name}</p>
+                <p className="user">{user.age}</p>
+              </div>
+            );
+          })
+        }
+        </div>
+        <div className="login-form">
+          <form>
+            <label for="name">Your name</label>
+            <input id="name" type="text" label="name" onChange={handleNameChanged} value={name} />
+            <label for="age123">Your age</label>
+            <input id="age123" type="number" onChange={handleAgeChanged} value={age} />
+
+            <button className="submitButton" onClick={handleClickButton}>
+              Submit
+            </button>
+          </form>
         </div>
       </div>
     </div>

@@ -69,3 +69,15 @@ html, body, #root {
 
 .introBottom {
 }
+
+.user {
+  color: red;
+}
+
+.submitButton {
+  background: yellow;
+  width: 100px;
+  height: 32px;
+  font-size: 14px;
+  font-weight: 600;
+}
