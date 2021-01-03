@@ -21,7 +21,6 @@
   padding: 40px 20px 0px 50px;
 }
 
-
 .leftLayout {
   display: flex;
   flex-direction: column;
@@ -33,37 +32,35 @@
   background-size: 100% 100%;
   justify-content: space-between;
   text-align: left;
-  
-  
 }
 
-.Description {
-  font-family: 'Bold';
+.description {
+  font-family: 'Devioussans-Bold';
   font-size: 42px;
   padding: 20px 50px 0px 50px;
 }
 
-.Note {
-  font-family: 'Regular';
+.note {
+  font-family: 'Devioussans-Regular';
   font-size: 16px;
   padding: 0px 25px 25px 50px;
 }
 
-.Creator {
+.creator {
   display: flex;
   flex-direction: column;
   text-align: left;
   padding: 0px 50px 50px 50px;
 }
 
-.artBy {
-  font-family: 'Regular';
+.editBy {
+  font-family: 'Devioussans-Regular';
   font-size: 14px;
   margin: 0px;
 }
 
 .nameCreator {
-  font-family: 'Regular';
+  font-family: 'DevioussansRegular';
   font-size: 14px;
   
 }
@@ -71,9 +68,8 @@
 .rightLayout {
   height: 100%;
   width: 35%;
-  color:black;
+  color: black;
   background-color: white;
   justify-content: space-between;
-  /* font-family: 'devioussans-regular'; */
 }
 

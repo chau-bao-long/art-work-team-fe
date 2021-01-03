@@ -1,20 +1,19 @@
 @font-face {
-  font-family: 'Bold';
+  font-family: 'Devioussans-Bold';
   font-style: bold;
   font-weight: 500;
   src: url(./font/devioussans-02-bold.woff2);
 }
 
-
 @font-face {
-  font-family: 'Regular';
+  font-family: 'Devioussans-Regular';
   font-style: light;
   font-weight: 500;
   src: url(./font/devioussans-02-light.woff2);
 }
 
 @font-face {
-  font-family: 'Symbol';
+  font-family: 'Devioussans-Symbol';
   font-style: normal;
   font-weight: 500;
   src: url(./font/deviantart-symbols6.woff2);
