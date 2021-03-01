@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import deviantArtLogo from './images/deviant-art.svg';
 import deviantArtText from './images/deviant-art-text.svg';
+import {useHistory} from 'react-router-dom';
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
@@ -14,7 +15,10 @@ async function getUsers() {
 function App() {
   const [users, setUsers] = useState([]);
   const [name, setName] = useState('');
-  const [age, setAge] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const history = useHistory();
 
   useEffect(async () => {
     const users = await getUsers();
@@ -25,15 +29,23 @@ function App() {
     setName(value.target.value);
   };
 
-  const handleAgeChanged = (value) => {
-    setAge(value.target.value);
+  const handlePassChanged = (value) => {
+    setPassword(value.target.value);
   };
 
-  const handleClickButton = async () => {
-    await axios.post('/api/user', {
-      name: name,
-      age: age,
-    });
+  const handleClickButton = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post('/api/login', {
+        name: name,
+        password: password,
+      });
+      
+      history.push('/home');
+    } catch(e) {
+      setError(e.response.data.error);
+    }
   };
 
   return (
@@ -66,7 +78,7 @@ function App() {
             return (
               <div>
                 <p className="user">{user.name}</p>
-                <p className="user">{user.age}</p>
+                <p className="user">{user.password}</p>
               </div>
             );
           })
@@ -76,8 +88,11 @@ function App() {
           <form>
             <label for="name">Your name</label>
             <input id="name" type="text" label="name" onChange={handleNameChanged} value={name} />
-            <label for="age123">Your age</label>
-            <input id="age123" type="number" onChange={handleAgeChanged} value={age} />
+            <label for="pass">Your password</label>
+            <input id="pass" type="number" onChange={handlePassChanged} value={password} />
+            {error && (
+              <p className="error">{error}</p>
+            )}
 
             <button className="submitButton" onClick={handleClickButton}>
               Submit
